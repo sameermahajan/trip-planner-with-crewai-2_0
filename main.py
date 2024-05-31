@@ -126,6 +126,9 @@ manager_task = Task(
         a comprehensive with detailed per-day plans, including budget, 
         packing suggestions."""),
     agent=manager,
+    expected_output="""The final output should be 
+        a comprehensive with detailed per-day plans, including budget, 
+        packing suggestions.""",
     async_execution=False
 )
 

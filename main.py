@@ -25,6 +25,7 @@ origin = "Atlanta, GA"
 travel_dates = "November 2024"
 destination = "Thialand"
 interests = "Hiking, Yoga, Sightseeing"
+days = 7
 
 
 class ContentTools:
@@ -120,7 +121,7 @@ quality_control_expert = Agent(
 manager_task = Task(
     description=dedent(f"""
         Oversee the integration of research findings, trip suggestions, 
-        and quality control feedback to produce a 7-day travel itinerary
+        and quality control feedback to produce a {days}-day travel itinerary
         specifically tailored to the user's interests: {interests} and 
         their travel destination: {destination}. The final output should be 
         a comprehensive with detailed per-day plans, including budget, 
@@ -202,7 +203,7 @@ gather_city_info = Task(
 
 plan_itinerary = Task(
     description=dedent(f"""
-        Expand research into a a full 7-day travel 
+        Expand research into a a full {days}-day travel 
         itinerary with detailed per-day plans, including 
         weather forecasts, places to eat, packing suggestions, 
         and a budget breakdown.
@@ -231,14 +232,14 @@ plan_itinerary = Task(
       """),
     agent=travel_agent,
     expected_output=dedent(f"""
-        A complete 7-day travel itinerary in markdown format to {destination}
+        A complete {days}-day travel itinerary in markdown format to {destination}
         """),
     async_execution=False,
 )
 
 quality_control = Task(
     description=dedent(f"""
-        Look over the 7-day travel itinerary and provide feedback
+        Look over the {days}-day travel itinerary and provide feedback
         on the quality of the plan and to make sure that the 
         itinerary follows the same format as the following 7 day 
         example where you outline what the traveler will do in the 
@@ -329,7 +330,7 @@ quality_control = Task(
     agent=quality_control_expert,
     context=[plan_itinerary],
     expected_output=dedent("""
-        Actionable feedback on the 7-day travel itinerary with 
+        Actionable feedback on the {days}-day travel itinerary with 
         assessment of the itinerary's adherence to the format and quality standards
         """),
     async_execution=False
